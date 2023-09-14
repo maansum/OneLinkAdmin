@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onelinkadmin/components/custom_%20review.dart';
+import 'package:onelinkadmin/pages/ratings_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,8 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: CustomReview(),
-    );
+    return MaterialApp(
+        title: 'one link Admin',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.interTextTheme(),
+        ),
+        home: const CustomReview());
   }
 }

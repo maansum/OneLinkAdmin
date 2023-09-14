@@ -56,11 +56,11 @@ class ReviewBuilder extends StatelessWidget {
                     color: Color(0xFF151515).withOpacity(0.20),
                     offset: const Offset(4, 4),
                     blurRadius: 15,
-                    spreadRadius: 1,
+                    spreadRadius: 0,
                   ),
                   BoxShadow(
                     color: Color(0xFF151515).withOpacity(0.20),
-                    offset: const Offset(-4, -4),
+                    offset: const Offset(-4, 0),
                     blurRadius: 10,
                     spreadRadius: 1,
                   ),
@@ -73,17 +73,25 @@ class ReviewBuilder extends StatelessWidget {
                   children: [
                     Text(
                       review.username,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w400,
                           color: Color(0xff151515)),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    CircleAvatar(
-                      backgroundColor: Colors.amber,
-                      radius: 10,
+                    Container(
+                      height: 20,
+                      width: 20,
+                      decoration: BoxDecoration(
+                          // color: Colors.red,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black87, width: 1)),
+                      child: Image.asset(
+                        'assets/images/facebook-app-symbol.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     Expanded(
                       child: Text(
@@ -93,35 +101,23 @@ class ReviewBuilder extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  height: 16,
-                  child: RatingBar.builder(
-                    initialRating: 0,
-                    minRating: 0,
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 3,
-                    itemBuilder: (context, index) => SizedBox(
-                      height: 5,
-                      child: const Icon(
-                        Icons.star,
-                        size: 5,
-                      ),
-                    ),
-                    onRatingUpdate: (value) {
-                      print(value);
-                    },
-                  ),
-                ),
-                SizedBox(
+                Row(
+                    children: List.generate(
+                        review.rating.floor(),
+                        (index) => const Icon(
+                              Icons.star,
+                              color: Color(0xffFFA200),
+                            ))),
+                const SizedBox(
                   height: 16,
                 ),
                 Text(
                   review.comment,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w400),
                 )
               ],
             ),

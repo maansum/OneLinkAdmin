@@ -14,7 +14,7 @@ class SubscribeTile extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-              color: Color(0xff212121), width: 1, style: BorderStyle.solid)),
+              color: Color(0xff15151533), width: 1, style: BorderStyle.solid)),
       child: Column(
         children: [
           Text(
@@ -24,6 +24,9 @@ class SubscribeTile extends StatelessWidget {
               fontWeight: FontWeight.w400,
               color: Color(0xff151515),
             ),
+          ),
+          SizedBox(
+            height: 16,
           ),
           Text(
             'Receive daily updates & much more!',
@@ -66,8 +69,8 @@ class SubscribeTile extends StatelessWidget {
                 ),
               ),
               Positioned(
-                  right: -15,
-                  bottom: -5,
+                  right: -10,
+                  bottom: -7,
                   child: ClipRect(
                       child: Image.asset(
                     'assets/images/Black.png',

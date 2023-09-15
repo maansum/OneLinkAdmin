@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:onelinkadmin/components/custom_homepageTile.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
+import 'package:onelinkadmin/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,13 +13,146 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      // backgroundColor: AppColor.,
+    return Scaffold(
+      backgroundColor: AppColor.backGroundColor,
       body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [CustomPageHeader()],
+          child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomPageHeader(showOpen: true),
+            CustomHomePageTile(
+                color1: Color(0xff1F00E8),
+                color2: Color(0xff026EB0),
+                imagePath: 'assets/images/fb.png',
+                title: 'Follow us on Facebook',
+                subtitle: 'www.facebook.com'),
+            CustomHomePageTile(
+                color1: Color(0xffEE1D53),
+                color2: Color(0xff9B0027),
+                imagePath: 'assets/images/tiktok.png',
+                title: 'Follow us on Tiktok',
+                subtitle: 'www.tiktok.com'),
+            CustomHomePageTile(
+                color1: Color(0xff962FBF),
+                color2: Color(0xffD62976),
+                imagePath: 'assets/images/insta.png',
+                title: 'Follow us on Instagram',
+                subtitle: 'www.instagram.com'),
+            SizedBox(
+              height: 16,
+            ),
+            Center(
+              child: AddToContactButton(
+                title: 'Add To Contact',
+                icon: Icon(
+                  Icons.person_add,
+                  size: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Container(
+                height: 137,
+                width: double.maxFinite,
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: const [
+                    BoxShadow(
+                      offset: Offset(4, 4),
+                      blurRadius: 11,
+                      color: Color.fromRGBO(21, 21, 21, 0.35),
+                    ),
+                  ],
+                ),
+                child: Container(
+                  // color: Colors.amber,
+                  margin: EdgeInsets.symmetric(horizontal: 60, vertical: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text('Review Us'),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Icon(Icons.star),
+                    ],
+                  ),
+                )),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                'Thank You For The Review:',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            SizedBox(
+                height: 176,
+                child: ListView.builder(
+                  itemCount: 3, // Set the number of items you want
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 20),
+                      width: 344,
+                      color: Colors.white,
+                    );
+                  },
+                )),
+          ],
+        ),
       )),
+    );
+  }
+}
+
+class AddToContactButton extends StatelessWidget {
+  final Icon icon;
+  final String title;
+
+  const AddToContactButton(
+      {super.key, required this.icon, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        height: 40,
+        width: 190,
+        decoration: BoxDecoration(
+            color: Color(0xff151515), borderRadius: BorderRadius.circular(12)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon,
+            SizedBox(
+              width: 8,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

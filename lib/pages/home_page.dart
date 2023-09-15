@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:onelinkadmin/components/custom_homepageTile.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
+import 'package:onelinkadmin/pages/ratings_page.dart';
 import 'package:onelinkadmin/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int ratingsClicked = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +78,40 @@ class _HomePageState extends State<HomePage> {
                   margin: EdgeInsets.symmetric(horizontal: 60, vertical: 24),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text('Review Us'),
                       SizedBox(
                         height: 16,
                       ),
-                      Icon(Icons.star),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          5,
+                          (index) => IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  ratingsClicked = index + 1 == ratingsClicked
+                                      ? 0
+                                      : index + 1;
+                                });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RatingPage(
+                                          ratingClicked: ratingsClicked),
+                                    ));
+                              },
+                              icon: Icon(
+                                ratingsClicked > index
+                                    ? Icons.star
+                                    : Icons.star_border,
+                                size: 40,
+                                color: ratingsClicked > index
+                                    ? const Color(0xffFFA200)
+                                    : const Color(0xff151515),
+                              )),
+                        ),
+                      ),
                     ],
                   ),
                 )),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:onelinkadmin/components/subscribe_tile.dart';
 import 'package:onelinkadmin/models/review_model.dart';
 
 import 'package:onelinkadmin/utils/constants.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:onelinkadmin/utils/dommy_data.dart';
 
 class CustomReview extends StatefulWidget {
@@ -18,12 +18,20 @@ class _CustomReviewState extends State<CustomReview> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          top: 30,
-        ),
-        child: SizedBox(height: 200, child: ReviewBuilder()),
+      body:const  Column(
+        children: [
+          Padding(
+            padding:  EdgeInsets.only(
+              left: 16,
+              top: 30,
+            ),
+            child: SizedBox(height: 200, child: ReviewBuilder()),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SubscribeTile()
+        ],
       ),
     );
   }
@@ -84,13 +92,14 @@ class ReviewBuilder extends StatelessWidget {
                     Container(
                       height: 20,
                       width: 20,
-                      decoration: BoxDecoration(
-                          // color: Colors.red,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.black87, width: 1)),
+                      decoration: const BoxDecoration(
+                        // color: Colors.red,
+                        shape: BoxShape.circle,
+                        // border: Border.all(color: Colors.black87, width: 1),
+                      ),
                       child: Image.asset(
-                        'assets/images/facebook-app-symbol.png',
-                        fit: BoxFit.fill,
+                        review.mediaImage,
+                        fit: BoxFit.cover,
                       ),
                     ),
                     Expanded(

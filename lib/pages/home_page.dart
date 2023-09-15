@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onelinkadmin/components/custom_%20review.dart';
 import 'package:onelinkadmin/components/custom_homepageTile.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
 import 'package:onelinkadmin/pages/ratings_page.dart';
@@ -128,22 +129,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(
-              height: 16,
-            ),
-            SizedBox(
-                height: 176,
-                child: ListView.builder(
-                  itemCount: 3, // Set the number of items you want
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(left: 20),
-                      width: 344,
-                      color: Colors.white,
-                    );
-                  },
-                )),
+            SizedBox(height: 200, child: ReviewBuilder()),
           ],
         ),
       )),

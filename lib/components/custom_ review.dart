@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:onelinkadmin/components/subscribe_tile.dart';
 import 'package:onelinkadmin/models/review_model.dart';
 
@@ -18,10 +19,10 @@ class _CustomReviewState extends State<CustomReview> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
-      body:const  Column(
+      body: const Column(
         children: [
           Padding(
-            padding:  EdgeInsets.only(
+            padding: EdgeInsets.only(
               left: 16,
               top: 30,
             ),
@@ -52,26 +53,19 @@ class ReviewBuilder extends StatelessWidget {
           final review = dummyReviews[index];
           return Container(
             margin:
-                const EdgeInsets.only(right: 16, top: 16, left: 16, bottom: 16),
+                const EdgeInsets.only(right: 0, top: 20, left: 16, bottom: 16),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            height: 176, //MediaQuery.of(context).size.height * 0.1,
+            // height: 176, //MediaQuery.of(context).size.height * 0.1,
             width: 343, // MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFF151515).withOpacity(0.20),
-                    offset: const Offset(4, 4),
-                    blurRadius: 15,
-                    spreadRadius: 0,
-                  ),
-                  BoxShadow(
-                    color: Color(0xFF151515).withOpacity(0.20),
-                    offset: const Offset(-4, 0),
-                    blurRadius: 10,
-                    spreadRadius: 1,
-                  ),
+                    offset: Offset(4, 4),
+                    blurRadius: 15.0,
+                    color: Color.fromRGBO(21, 21, 21, 0.20),
+                  )
                 ]),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -104,7 +98,9 @@ class ReviewBuilder extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        review.date.toString(),
+                        DateFormat('dd MMM, yyyy')
+                            .format(review.date)
+                            .toString(),
                         textAlign: TextAlign.end,
                       ),
                     )
@@ -123,10 +119,14 @@ class ReviewBuilder extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                Text(
-                  review.comment,
-                  style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.w400),
+                Expanded(
+                  child: Text(
+                    review.comment,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w400),
+                  ),
                 )
               ],
             ),

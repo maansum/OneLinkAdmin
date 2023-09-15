@@ -250,31 +250,38 @@ class CustomTextFormField extends StatelessWidget {
       fontWeight: FontWeight.w600,
       color: Color(0xFF151515),
     );
+    final hintTextStyle = TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: Color(0xFF151515),
+    );
     return Column(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                labelText,
-                style: formTextStyle,
-                overflow: TextOverflow.ellipsis,
-              ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: labelText,
+                  style: formTextStyle,
+                ),
+                TextSpan(
+                  text: '*',
+                  style: TextStyle(
+                    color: Color(0xFFEA0E0E),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
             ),
-            const Text(
-              '*',
-              style: TextStyle(
-                color: Color(0xFFEA0E0E),
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            )
-          ],
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         TextFormField(
-          decoration: InputDecoration(
-            hintText: hintText,
-          ),
+          decoration:
+              InputDecoration(hintText: hintText, hintStyle: hintTextStyle),
         ),
       ],
     );

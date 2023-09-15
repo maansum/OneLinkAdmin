@@ -1,9 +1,9 @@
+// ignore_for_file: use_full_hex_values_for_flutter_colors
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:onelinkadmin/components/subscribe_tile.dart';
-import 'package:onelinkadmin/models/review_model.dart';
 
-import 'package:onelinkadmin/utils/constants.dart';
 import 'package:onelinkadmin/utils/dommy_data.dart';
 
 class CustomReview extends StatefulWidget {
@@ -102,6 +102,11 @@ class ReviewBuilder extends StatelessWidget {
                             .format(review.date)
                             .toString(),
                         textAlign: TextAlign.end,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xff990f0f0f),
+                          fontWeight: FontWeight.w200,
+                        ),
                       ),
                     )
                   ],

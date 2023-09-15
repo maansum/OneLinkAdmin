@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               height: 16,
             ),
             Container(
-                height: 137,
+                // height: 137,
                 width: double.maxFinite,
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 decoration: BoxDecoration(
@@ -78,10 +78,15 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   // color: Colors.amber,
                   margin: EdgeInsets.symmetric(horizontal: 60, vertical: 24),
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Review Us'),
+                      Text(
+                        'Review Us',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w400),
+                      ),
                       SizedBox(
                         height: 16,
                       ),
@@ -107,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                                 ratingsClicked > index
                                     ? Icons.star
                                     : Icons.star_border,
-                                size: 40,
+                                size: 30,
                                 color: ratingsClicked > index
                                     ? const Color(0xffFFA200)
                                     : const Color(0xff151515),

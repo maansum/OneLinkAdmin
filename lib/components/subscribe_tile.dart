@@ -14,7 +14,9 @@ class SubscribeTile extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-              color: Color(0xff15151533), width: 1, style: BorderStyle.solid)),
+              color: Color.fromARGB(20, 21, 21, 51),
+              width: 1,
+              style: BorderStyle.solid)),
       child: Column(
         children: [
           Text(
@@ -44,7 +46,7 @@ class SubscribeTile extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 16),
                 padding: const EdgeInsets.only(left: 17.8, bottom: 8),
                 height: 42.5,
-                width: 222,
+                width: 275,
                 decoration: const BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.only(
@@ -74,6 +76,8 @@ class SubscribeTile extends StatelessWidget {
                   child: ClipRect(
                       child: Image.asset(
                     'assets/images/Black.png',
+                    height: 55,
+                    width: 55,
                   ))),
             ],
           ),

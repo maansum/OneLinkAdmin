@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onelinkadmin/components/custom_%20review.dart';
 import 'package:onelinkadmin/components/custom_homepageTile.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
+import 'package:onelinkadmin/components/subscribe_tile.dart';
 import 'package:onelinkadmin/pages/ratings_page.dart';
 import 'package:onelinkadmin/utils/constants.dart';
 
@@ -129,7 +130,8 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(height: 200, child: ReviewBuilder()),
+            SizedBox(height: 176, child: ReviewBuilder()),
+            SubscribeTile()
           ],
         ),
       )),

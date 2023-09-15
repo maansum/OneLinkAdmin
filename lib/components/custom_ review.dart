@@ -53,8 +53,8 @@ class ReviewBuilder extends StatelessWidget {
           final review = dummyReviews[index];
           return Container(
             margin:
-                const EdgeInsets.only(right: 0, top: 20, left: 16, bottom: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                const EdgeInsets.only(right: 0, top: 20, left: 16, bottom: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             // height: 176, //MediaQuery.of(context).size.height * 0.1,
             width: 343, // MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
@@ -62,9 +62,9 @@ class ReviewBuilder extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    offset: Offset(4, 4),
-                    blurRadius: 15.0,
-                    color: Color.fromRGBO(21, 21, 21, 0.20),
+                    offset: Offset(4, 1),
+                    blurRadius: 6.0,
+                    color: Color.fromRGBO(22, 21, 21, 0.2),
                   )
                 ]),
             child: Column(

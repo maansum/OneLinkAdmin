@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onelinkadmin/components/custom_%20review.dart';
-import 'package:onelinkadmin/pages/ratings_page.dart';
+import 'package:onelinkadmin/pages/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -18,6 +17,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.interTextTheme(),
         ),
-        home: const CustomReview());
+        home: const HomePage());
   }
 }

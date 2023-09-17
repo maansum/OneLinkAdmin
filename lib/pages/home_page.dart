@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:onelinkadmin/components/custom_%20review.dart';
 import 'package:onelinkadmin/components/custom_homepageTile.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
+import 'package:onelinkadmin/components/subscribe_tile.dart';
+import 'package:onelinkadmin/pages/ratings_page.dart';
 import 'package:onelinkadmin/utils/constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int ratingsClicked = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               height: 16,
             ),
             Container(
-                height: 137,
+                // height: 137,
                 width: double.maxFinite,
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 decoration: BoxDecoration(
@@ -73,14 +78,47 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   // color: Colors.amber,
                   margin: EdgeInsets.symmetric(horizontal: 60, vertical: 24),
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text('Review Us'),
+                    children: [
+                      Text(
+                        'Review Us',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w400),
+                      ),
                       SizedBox(
                         height: 16,
                       ),
-                      Icon(Icons.star),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                          5,
+                          (index) => IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  ratingsClicked = index + 1 == ratingsClicked
+                                      ? 0
+                                      : index + 1;
+                                });
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RatingPage(
+                                          ratingClicked: ratingsClicked),
+                                    ));
+                              },
+                              icon: Icon(
+                                ratingsClicked > index
+                                    ? Icons.star
+                                    : Icons.star_border,
+                                size: 30,
+                                color: ratingsClicked > index
+                                    ? const Color(0xffFFA200)
+                                    : const Color(0xff151515),
+                              )),
+                        ),
+                      ),
                     ],
                   ),
                 )),
@@ -97,22 +135,8 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.black),
               ),
             ),
-            SizedBox(
-              height: 16,
-            ),
-            SizedBox(
-                height: 176,
-                child: ListView.builder(
-                  itemCount: 3, // Set the number of items you want
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(left: 20),
-                      width: 344,
-                      color: Colors.white,
-                    );
-                  },
-                )),
+            SizedBox(height: 176, child: ReviewBuilder()),
+            SubscribeTile()
           ],
         ),
       )),

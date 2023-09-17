@@ -18,7 +18,7 @@ class Review {
       username: json['username'] ?? '',
       mediaImage: json['mediaImage'] ?? '',
       date: DateTime.tryParse(json['date'] ?? '') ?? DateTime.now(),
-      rating: (json['rating'] as num).toDouble() ?? 0.0,
+      rating: (json['rating'] as num).toDouble(),
       comment: json['comment'] ?? '',
     );
   }

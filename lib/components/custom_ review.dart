@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onelinkadmin/components/subscribe_tile.dart';
-import 'package:onelinkadmin/models/review_model.dart';
 
-import 'package:onelinkadmin/utils/constants.dart';
 import 'package:onelinkadmin/utils/dommy_data.dart';
 
 class CustomReview extends StatefulWidget {
@@ -18,10 +16,10 @@ class _CustomReviewState extends State<CustomReview> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(),
-      body:const  Column(
+      body: const Column(
         children: [
           Padding(
-            padding:  EdgeInsets.only(
+            padding: EdgeInsets.only(
               left: 16,
               top: 30,
             ),

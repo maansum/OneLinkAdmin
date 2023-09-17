@@ -74,6 +74,8 @@ class SubscribeTile extends StatelessWidget {
                   child: ClipRect(
                       child: Image.asset(
                     'assets/images/Black.png',
+                    height: 55,
+                    width: 55,
                   ))),
             ],
           ),

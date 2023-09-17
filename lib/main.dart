@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:onelinkadmin/models/ratings_model.dart';
 import 'package:onelinkadmin/pages/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => RatingsChangeNotifier(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

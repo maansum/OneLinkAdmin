@@ -3,21 +3,17 @@ import 'package:onelinkadmin/components/custom_%20review.dart';
 import 'package:onelinkadmin/components/custom_homepageTile.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
 import 'package:onelinkadmin/components/subscribe_tile.dart';
+import 'package:onelinkadmin/models/ratings_model.dart';
 import 'package:onelinkadmin/pages/ratings_page.dart';
 import 'package:onelinkadmin/utils/constants.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int ratingsClicked = 0;
-
-  @override
   Widget build(BuildContext context) {
+    int ratingsClicked = Provider.of<RatingsChangeNotifier>(context).rating;
     return Scaffold(
       backgroundColor: AppColor.backGroundColor,
       body: SafeArea(
@@ -94,29 +90,28 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           5,
-                          (index) => IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  ratingsClicked = index + 1 == ratingsClicked
-                                      ? 0
-                                      : index + 1;
-                                });
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RatingPage(
-                                          ratingClicked: ratingsClicked),
-                                    ));
-                              },
-                              icon: Icon(
-                                ratingsClicked > index
-                                    ? Icons.star
-                                    : Icons.star_border,
-                                size: 30,
-                                color: ratingsClicked > index
-                                    ? const Color(0xffFFA200)
-                                    : const Color(0xff151515),
-                              )),
+                          (index) => Expanded(
+                            child: IconButton(
+                                onPressed: () {
+                                  Provider.of<RatingsChangeNotifier>(context,
+                                          listen: false)
+                                      .setrating(index);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => RatingPage(),
+                                      ));
+                                },
+                                icon: Icon(
+                                  ratingsClicked > index
+                                      ? Icons.star
+                                      : Icons.star_border,
+                                  size: 30,
+                                  color: ratingsClicked > index
+                                      ? const Color(0xffFFA200)
+                                      : const Color(0xff151515),
+                                )),
+                          ),
                         ),
                       ),
                     ],

@@ -12,9 +12,9 @@ class CustomPageHeader extends StatefulWidget {
 
 class _CustomPageHeaderState extends State<CustomPageHeader> {
   TextStyle tertiaryTextStyle =
-      TextStyle(fontSize: 8, fontWeight: FontWeight.w400, color: Colors.black);
+      TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: Colors.black);
   TextStyle secondaryTextStyle =
-      TextStyle(fontSize: 8, fontWeight: FontWeight.w600, color: Colors.black);
+      TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.black);
   List<String> days = [
     'Monday',
     'Tuesday',
@@ -26,16 +26,19 @@ class _CustomPageHeaderState extends State<CustomPageHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: EdgeInsets.fromLTRB(43, 15, 43, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-              child: Image.asset(
-            'assets/images/header_image.png',
+              child: SizedBox(
             width: 260,
             height: 67,
+            child: Image.asset(
+              'assets/images/header_image.png',
+              fit: BoxFit.cover,
+            ),
           )),
           SizedBox(
             height: 8,
@@ -44,7 +47,7 @@ class _CustomPageHeaderState extends State<CustomPageHeader> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                width: 60,
+                width: 49,
               ),
               Text(
                 '9510 University City Bivd 101\n Charlotte, NC 28213',
@@ -55,101 +58,106 @@ class _CustomPageHeaderState extends State<CustomPageHeader> {
                     color: Colors.black),
               ),
               (widget.showOpen == true)
-                  ? PopupMenuButton(
-                      itemBuilder: (context) {
-                        return [
-                          PopupMenuItem(
-                              child: Container(
-                            padding: EdgeInsets.fromLTRB(17, 16, 17, 21),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'REGURAL HOURS',
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                for (int index = 0; index < 6; index++)
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                  ? Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          PopupMenuButton(
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(
+                                    child: Container(
+                                  padding: EdgeInsets.fromLTRB(17, 16, 17, 21),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        days[index],
-                                        style: tertiaryTextStyle,
+                                        'REGURAL HOURS',
+                                        style: TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black),
                                       ),
-                                      Text(
-                                        '11AM to 11PM',
-                                        style: tertiaryTextStyle,
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      for (int index = 0; index < 6; index++)
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              days[index],
+                                              style: tertiaryTextStyle,
+                                            ),
+                                            Text(
+                                              '11AM to 11PM',
+                                              style: tertiaryTextStyle,
+                                            ),
+                                          ],
+                                        ),
+                                      SizedBox(
+                                        height: 9,
+                                      ),
+                                      Divider(),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Happy Hours',
+                                            style: secondaryTextStyle,
+                                          ),
+                                          Text(
+                                            '11AM to 1PM',
+                                            style: secondaryTextStyle,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 9,
+                                      ),
+                                      Divider(),
+                                      SizedBox(
+                                        height: 6,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Take Out',
+                                            style: secondaryTextStyle,
+                                          ),
+                                          Text(
+                                            '11AM to 1PM',
+                                            style: secondaryTextStyle,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                SizedBox(
-                                  height: 9,
+                                ))
+                              ];
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  'open',
+                                  style: TextStyle(
+                                      color: Colors.green,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
                                 ),
-                                Divider(),
-                                SizedBox(
-                                  height: 6,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Happy Hours',
-                                      style: secondaryTextStyle,
-                                    ),
-                                    Text(
-                                      '11AM to 1PM',
-                                      style: secondaryTextStyle,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 9,
-                                ),
-                                Divider(),
-                                SizedBox(
-                                  height: 6,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Take Out',
-                                      style: secondaryTextStyle,
-                                    ),
-                                    Text(
-                                      '11AM to 1PM',
-                                      style: secondaryTextStyle,
-                                    ),
-                                  ],
-                                ),
+                                Icon(Icons.keyboard_arrow_down_outlined)
                               ],
                             ),
-                          ))
-                        ];
-                      },
-                      child: Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              'open',
-                              style: TextStyle(
-                                  color: Colors.green,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Icon(Icons.keyboard_arrow_down_outlined)
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     )
                   : Text('')
@@ -159,7 +167,7 @@ class _CustomPageHeaderState extends State<CustomPageHeader> {
             height: 16,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CustomPageHeaderButton(
                 iconPath: 'assets/images/call.png',
@@ -168,8 +176,14 @@ class _CustomPageHeaderState extends State<CustomPageHeader> {
                   await FlutterPhoneDirectCaller.callNumber('9287461560');
                 },
               ),
+              SizedBox(
+                width: 12,
+              ),
               CustomPageHeaderButton(
                   iconPath: 'assets/images/website.png', title: 'Website'),
+              SizedBox(
+                width: 12,
+              ),
               CustomPageHeaderButton(
                   iconPath: 'assets/images/location.png', title: 'Location'),
             ],
@@ -192,7 +206,7 @@ class CustomPageHeaderButton extends StatelessWidget {
     return GestureDetector(
       onTap: ontap,
       child: Container(
-        width: 110,
+        width: 100,
         height: 36,
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(

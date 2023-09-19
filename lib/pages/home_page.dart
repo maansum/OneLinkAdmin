@@ -5,6 +5,7 @@ import 'package:onelinkadmin/components/custom_pageHeader.dart';
 import 'package:onelinkadmin/components/subscribe_tile.dart';
 import 'package:onelinkadmin/pages/ratings_page.dart';
 import 'package:onelinkadmin/utils/constants.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +17,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int ratingsClicked = 0;
 
+  Future<void> _lunchURL(String url) async {
+    final urls = Uri.parse(url);
+    if (await canLaunchUrl(urls)) {
+      try {
+        await launchUrl(urls);
+      } catch (e) {
+        print('error lunching url $e');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,24 +38,36 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomPageHeader(showOpen: true),
-            CustomHomePageTile(
-                color1: Color(0xff1F00E8),
-                color2: Color(0xff026EB0),
-                imagePath: 'assets/images/fb.png',
-                title: 'Follow us on Facebook',
-                subtitle: 'www.facebook.com'),
-            CustomHomePageTile(
-                color1: Color(0xffEE1D53),
-                color2: Color(0xff9B0027),
-                imagePath: 'assets/images/tiktok.png',
-                title: 'Follow us on Tiktok',
-                subtitle: 'www.tiktok.com'),
-            CustomHomePageTile(
-                color1: Color(0xff962FBF),
-                color2: Color(0xffD62976),
-                imagePath: 'assets/images/insta.png',
-                title: 'Follow us on Instagram',
-                subtitle: 'www.instagram.com'),
+            InkWell(
+              onTap: () {
+                _lunchURL('https://www.facebook.com/');
+              },
+              child: CustomHomePageTile(
+                  color1: Color(0xff1F00E8),
+                  color2: Color(0xff026EB0),
+                  imagePath: 'assets/images/fb.png',
+                  title: 'Follow us on Facebook',
+                  subtitle: 'www.facebook.com'),
+            ),
+            InkWell(
+              onTap: () => _lunchURL('https://www.tiktok.com/'),
+              child: CustomHomePageTile(
+                  color1: Color(0xffEE1D53),
+                  color2: Color(0xff9B0027),
+                  imagePath: 'assets/images/tiktok.png',
+                  title: 'Follow us on Tiktok',
+                  subtitle: 'www.tiktok.com'),
+            ),
+            InkWell(
+              onTap: () =>
+                  _lunchURL("https://www.instagram.com/passagetoindia/"),
+              child: CustomHomePageTile(
+                  color1: Color(0xff962FBF),
+                  color2: Color(0xffD62976),
+                  imagePath: 'assets/images/insta.png',
+                  title: 'Follow us on Instagram',
+                  subtitle: 'www.instagram.com'),
+            ),
             SizedBox(
               height: 16,
             ),

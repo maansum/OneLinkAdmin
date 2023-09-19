@@ -65,6 +65,11 @@ class ReviewBuilder extends StatelessWidget {
                     offset: Offset(4, 1),
                     blurRadius: 6.0,
                     color: Color.fromRGBO(22, 21, 21, 0.2),
+                  ),
+                  BoxShadow(
+                    offset: Offset(0, 1),
+                    blurRadius: 6.0,
+                    color: Color.fromRGBO(22, 21, 21, 0.2),
                   )
                 ]),
             child: Column(

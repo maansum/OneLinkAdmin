@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:onelinkadmin/components/custom_pageHeader.dart';
+import 'package:onelinkadmin/models/ratings_model.dart';
+import 'package:provider/provider.dart';
 
 class RatingPage extends StatefulWidget {
-  final int ratingClicked;
-  const RatingPage({super.key, required this.ratingClicked});
+  const RatingPage({super.key});
 
   @override
   State<RatingPage> createState() => RatingPageState();
@@ -11,13 +12,14 @@ class RatingPage extends StatefulWidget {
 
 class RatingPageState extends State<RatingPage> {
   List<String> images = [
-    'assets/images/google.png',
+    'assets/images/fb_tile.png',
     'assets/images/yelp.png',
     'assets/images/google.png',
     'assets/images/tripAdvisor.png'
   ];
   @override
   Widget build(BuildContext context) {
+    int ratingClicked = Provider.of<RatingsChangeNotifier>(context).rating;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -64,46 +66,50 @@ class RatingPageState extends State<RatingPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
                         5,
-                        (index) => IconButton(
-                            onPressed: () {
-                              // setState(() {
-                              //   widget.ratingClicked = index + 1 == widget.ratingClicked
-                              //       ? 0
-                              //       : index + 1;
-                              // });
-                            },
-                            icon: Icon(
-                              widget.ratingClicked > index
-                                  ? Icons.star
-                                  : Icons.star_border,
-                              size: 40,
-                              color: widget.ratingClicked > index
-                                  ? const Color(0xffFFA200)
-                                  : const Color(0xff151515),
-                            )),
+                        (index) => Expanded(
+                          child: IconButton(
+                              onPressed: () {
+                                Provider.of<RatingsChangeNotifier>(context,
+                                        listen: false)
+                                    .setrating(index);
+                              },
+                              icon: Icon(
+                                ratingClicked > index
+                                    ? Icons.star
+                                    : Icons.star_border,
+                                size: 40,
+                                color: ratingClicked > index
+                                    ? const Color(0xffFFA200)
+                                    : const Color(0xff151515),
+                              )),
+                        ),
                       ),
                     ),
-                    if (widget.ratingClicked < 4) ...[
+                    if (ratingClicked < 4) ...[
                       const SizedBox(
-                        height: 28,
+                        height: 28.0,
                       ),
                       const CustomTextFormField(
                           labelText: 'Name', hintText: 'Type Name'),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 24.0),
                       const CustomTextFormField(
                           labelText: 'Email', hintText: 'Type email address'),
+                      const SizedBox(height: 24.0),
+                      const CustomTextFormField(
+                          labelText: 'Phone Number',
+                          hintText: 'Type phone number'),
                     ],
-                    const SizedBox(height: 24),
-                    if (widget.ratingClicked == 2 || widget.ratingClicked == 3)
+                    const SizedBox(height: 24.0),
+                    if (ratingClicked == 2 || ratingClicked == 3)
                       const CustomTextFormField(
                           labelText: 'How do you feel? ',
                           hintText:
                               'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.'),
-                    if (widget.ratingClicked < 2)
+                    if (ratingClicked < 2)
                       const CustomTextFormField(
                           labelText: 'How can we resolve your problem',
                           hintText: 'Leave us a review'),
-                    if (widget.ratingClicked == 4 || widget.ratingClicked == 5)
+                    if (ratingClicked == 4 || ratingClicked == 5)
                       ListView.builder(
                         physics: ScrollPhysics(),
                         shrinkWrap: true,
@@ -111,8 +117,9 @@ class RatingPageState extends State<RatingPage> {
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
-                              Image.asset(images[index * 2]),
-                              Image.asset(images[index * 2 + 1]),
+                              Expanded(child: Image.asset(images[index * 2])),
+                              Expanded(
+                                  child: Image.asset(images[index * 2 + 1])),
                             ],
                           );
                         },
@@ -154,7 +161,7 @@ class RatingPageState extends State<RatingPage> {
                               ]),
                         ),
                         const SizedBox(width: 16),
-                        if (widget.ratingClicked < 3)
+                        if (ratingClicked < 3)
                           CustomActionButton(
                             buttonName: 'Submit',
                             boxDecoration: BoxDecoration(

@@ -126,7 +126,7 @@ class RatingPageState extends State<RatingPage> {
                       ),
                     const SizedBox(height: 32),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomActionButton(
                           buttonName: 'Cancel',
@@ -160,7 +160,7 @@ class RatingPageState extends State<RatingPage> {
                                 ),
                               ]),
                         ),
-                        const SizedBox(width: 16),
+                        //const SizedBox(width: 16),
                         if (ratingClicked < 3)
                           CustomActionButton(
                             buttonName: 'Submit',
